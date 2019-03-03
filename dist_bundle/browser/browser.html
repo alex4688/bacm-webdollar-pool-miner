@@ -1,0 +1,32 @@
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="browser-bundle.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="browser.css">
+
+</head>
+
+<body>
+
+    <h1>Testing Browser Node-WebDollar</h1>
+
+    Peers
+    <div id="map"></div>
+
+    <script>
+        async function initMap() {
+
+            WebDollar.Applications.NetworkMap.createMap('map');
+            await WebDollar.Applications.NetworkMap.initialize(map);
+            WebDollar.Applications.NetworkMap.initializePolylines(map);
+
+            //WebDollar.Applications.NetworkMap.createTestConnections(map);
+        }
+    </script>
+
+    <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3RtAgqpzLTzj5zKs3z-83RUDZYmvlsCc&callback=initMap"> </script>
+
+
+</body>

@@ -1,1 +1,1 @@
-# bacm-webdollar-pool-miner
+# bacm-miner
