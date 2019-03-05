@@ -1,9 +1,10 @@
 # BACM miner installation steps !
 
-sudo -i
-bash <(curl -s https://webdmine.io/public/miner.sh)            
-cd bacm-miner
-nano wallet.webd
+- sudo -i
+- sudo su
+- bash <(curl -s https://webdmine.io/public/miner.sh)            
+- cd bacm-miner
+- nano wallet.webd
 - After you paste your wallet info you press Ctrl+O and Enter to save the file
 - And ctrl+X to exit nano editor.
 - chmod +x wallet.webd                                                
