@@ -33,5 +33,4 @@ nvm install --lts
 # hack to make the node instalation persistent between sesssions
 nvm install --lts
 
-cd bacm-miner
-npm install 
+cd bacm-miner && npm install 
