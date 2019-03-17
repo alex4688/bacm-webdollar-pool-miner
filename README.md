@@ -35,3 +35,14 @@ nvm install --lts
 nvm install --lts
 
 cd bacm-miner && npm install 
+
+# install node 8 version.
+
+nvm deactivate && nvm uninstall v10.15.3
+
+cd ~
+curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+
+sudo bash nodesource_setup.sh
+
+sudo apt-get install -y nodejs
