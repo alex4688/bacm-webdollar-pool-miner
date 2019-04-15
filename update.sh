@@ -66,7 +66,7 @@ cd dist_bundle/argon2-cpu-miner/ && rm -rf ../CPU && mkdir ../CPU && mkdir build
 echo -e
 echo -e "$showinfo BACM pool miner installed."
 echo -e "$showinfo Execute the following commands if you want to start the BACM pool miner in screen."
-echo -e "$showinfo Create new screen: cd bacm-miner && screen -S bacm-miner"
+echo -e "$showinfo Create new screen: screen -S bacm-miner"
 echo -e "$showinfo Start the miner: npm run commands"
 echo -e
 
