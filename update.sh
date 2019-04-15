@@ -47,8 +47,7 @@ function set_cputhreads() {
         if [[ $(grep "CPU_MAX:" $get_const_global | cut -d ',' -f1 | awk '{print $2}') == "$setcputhreads" ]]; then
             echo "$showinfo ${yellow}$(grep "CPU_MAX:" $get_const_global | cut -d ',' -f1)$stand is already set."
         else
-            echo "$showexecute Setting terminal CPU_MAX to ${yellow}$setcputhreads$stand" && sed -i -- "s/CPU_MAX: $(grep "CPU_MAX:" $get_const_global | cut -d ',' -f1 | awk '{print $2}')/CPU_MAX:
-cho "$showinfo Result: $(grep "CPU_MAX:" $get_const_global | cut -d ',' -f1)"
+            echo "$showexecute Setting terminal CPU_MAX to ${yellow}$setcputhreads$stand" && sed -i -- "s/CPU_MAX: $(grep "CPU_MAX:" $get_const_global | cut -d ',' -f1 | awk '{print $2}')/CPU_MAX: $setcputhreads/g" $get_const_global && echo "$showinfo Result: $(grep "CPU_MAX:" $get_const_global | cut -d ',' -f1)"
         fi
 
     elif [[ $setcputhreads == * ]]; then
@@ -62,8 +61,7 @@ git pull origin master
 chmod +x update.sh
 get_const_global="src/consts/const_global.js"
 set_cputhreads
-cd dist_bundle/argon2-cpu-miner/ && rm -rf ../CPU && mkdir ../CPU && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && cp libargon2.so libargon2.so.1 ../../../ && cp cpu-miner ..
-undle/argon2-cpu-miner && npm install
+cd dist_bundle/argon2-cpu-miner/ && rm -rf ../CPU && mkdir ../CPU && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && cp libargon2.so libargon2.so.1 ../../../ && cp cpu-miner ../../CPU/ && cd ../../../ && rm -rf dist_bundle/argon2-cpu-miner && npm install
 
 echo -e
 echo -e "$showinfo BACM pool miner installed."
@@ -71,3 +69,4 @@ echo -e "$showinfo Execute the following commands if you want to start the BACM 
 echo -e "$showinfo Create new screen: cd bacm-miner && screen -S bacm-miner"
 echo -e "$showinfo Start the miner: npm run commands"
 echo -e
+
