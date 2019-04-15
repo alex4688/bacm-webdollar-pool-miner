@@ -61,7 +61,7 @@ git reset --hard origin/master
 git pull origin master
 get_const_global="src/consts/const_global.js"
 set_cputhreads
-cd dist_bundle/argon2-cpu-miner/ && mkdir ../CPU && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && cp libargon2.so libargon2.so.1 ../../../ && cp cpu-miner ../../CPU/ &&
+cd dist_bundle/argon2-cpu-miner/ && rm -rf ../CPU && mkdir ../CPU && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && cp libargon2.so libargon2.so.1 ../../../ && cp cpu-miner ../../CPU/ &&
 2-cpu-miner && npm install
 
 echo -e
