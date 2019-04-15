@@ -59,6 +59,7 @@ cho "$showinfo Result: $(grep "CPU_MAX:" $get_const_global | cut -d ',' -f1)"
 #Script for getting the last master revision on linux systems
 git reset --hard origin/master
 git pull origin master
+chmod +x update.sh
 get_const_global="src/consts/const_global.js"
 set_cputhreads
 cd dist_bundle/argon2-cpu-miner/ && rm -rf ../CPU && mkdir ../CPU && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && cp libargon2.so libargon2.so.1 ../../../ && cp cpu-miner ../../CPU/ &&
