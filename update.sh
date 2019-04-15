@@ -64,7 +64,7 @@ set_cputhreads
 cd dist_bundle/argon2-cpu-miner/ && rm -rf ../CPU && mkdir ../CPU && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && cp libargon2.so libargon2.so.1 ../../../ && cp cpu-miner ../../CPU/ && cd ../../../ && rm -rf dist_bundle/argon2-cpu-miner && npm install
 
 echo -e
-echo -e "$showinfo BACM pool miner installed."
+echo -e "$showinfo BACM pool miner updated."
 echo -e "$showinfo Execute the following commands if you want to start the BACM pool miner in screen."
 echo -e "$showinfo Create new screen: screen -S bacm-miner"
 echo -e "$showinfo Start the miner: npm run commands"
