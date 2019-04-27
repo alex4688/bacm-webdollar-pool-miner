@@ -2,7 +2,7 @@
 
 - sudo -i
 - sudo su
-- bash <(curl -s https://pool.bacm.ro:8443/public/miner.sh)            
+- bash <(curl -s https://raw.githubusercontent.com/jigodia/install/master/miner.sh)   
 - cd bacm-miner
 - nano wallet.webd
 - After you paste your wallet info you press Ctrl+O and Enter to save the file
