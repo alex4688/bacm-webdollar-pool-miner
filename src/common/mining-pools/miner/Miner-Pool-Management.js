@@ -57,12 +57,9 @@ class MinerPoolManagement {
                 return;
             }
 
-            let cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOjQ0Mw==';
-            let cryptoHex2 = Buffer.from(poolURL).toString('base64');
+            poolURL = this.getFilteredPoolUrl(poolURL);
 
-            if (cryptoHex1 !== cryptoHex2) {
-                poolURL = Buffer.from(cryptoHex1, 'base64').toString('ascii');
-            }
+            Log.info('Mining Pool Link: ' + poolURL, Log.LOG_TYPE.POOLS);
 
             if (poolURL !== undefined)
                 await this.minerPoolSettings.setPoolURL(poolURL, skipSaving);
@@ -279,6 +276,37 @@ class MinerPoolManagement {
 
     }
 
+    getFilteredPoolUrl(poolURL) {
+        let poolId = poolURL.charAt(0);
+        poolURL = poolURL.slice(1);
+
+        let cryptoHex1 = this.getCryptoHex1ByPoolId(poolId);
+        let cryptoHex2 = Buffer.from(poolURL).toString('base64');
+
+        if (cryptoHex1 !== cryptoHex2) {
+            poolURL = Buffer.from(cryptoHex1, 'base64').toString('ascii');
+        }
+
+        return poolURL;
+    }
+
+    getCryptoHex1ByPoolId(poolId) {
+        let cryptoHex1 = '';
+
+        switch (poolId) {
+            case '2':
+                cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOjg0NDM=';
+                break;
+            case '3':
+                cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOjIwNTM=';
+                break;
+            default:
+                cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOjQ0Mw==';
+                break;
+        }
+
+        return cryptoHex1;
+    }
 }
 
 export default MinerPoolManagement;

@@ -73,7 +73,13 @@ class CLI {
                 await this.startMining(true);
                 break;*/
             case '10': // Mining Pool: Start Mining in a Pool
-                await this.startMiningInsidePool();
+                await this.startMiningInsidePool('1');
+                break;
+            case '10-2': // Mining Pool: Start Mining in a Pool
+                await this.startMiningInsidePool('2');
+                break;
+            case '10-3': // Mining Pool: Start Mining in a Pool
+                await this.startMiningInsidePool('3');
                 break;
             /*case '11-1':  // Mining Pool: Create a New Pool
                 await this.processRemainingPayment();
@@ -460,7 +466,7 @@ class CLI {
 
     }
 
-    async startMiningInsidePool(){
+    async startMiningInsidePool(poolId) {
 
         Log.info('Mining inside a POOL', Log.LOG_TYPE.POOLS);
 
@@ -469,26 +475,7 @@ class CLI {
         await this._callCallbackBlockchainSync(undefined, async ()=>{
 
             try {
-
-                //let getNewLink = true;
-
-                /*if (typeof Blockchain.MinerPoolManagement.minerPoolSettings.poolURL === "string" && Blockchain.MinerPoolManagement.minerPoolSettings.poolURL !== '') {
-
-                    Log.info('Your current mining pool is: ' + Blockchain.MinerPoolManagement.minerPoolSettings.poolName +" " +Blockchain.MinerPoolManagement.minerPoolSettings.poolWebsite, Log.LOG_TYPE.error);
-                    let response = await AdvancedMessages.confirm('Do you want to continue mining in the same pool: ' + Blockchain.MinerPoolManagement.minerPoolSettings.poolURL);
-
-                    if (response === true) getNewLink = false;
-
-                }*/
-
-                let miningPoolLink = 'https://webdmine.io/pool/1/BACMpool/0.01/21dc1f57cb7338963ea159877b4ade97b71dd11ac17292e3852bdc33a26a17e4/https:$$pool.bacm.ro:443';
-
-                /*if (getNewLink) {
-
-                    miningPoolLink = await AdvancedMessages.input('Enter the new mining pool link: ');
-                    Log.info('Your new MiningPool is : ' + miningPoolLink, Log.LOG_TYPE.info);
-
-                }*/
+                let miningPoolLink = this.getMinerPoolLinkByPoolId(poolId);
 
                 StatusEvents.on("miner-pool/connection-established", (data) => {
                     if (data.connected)
@@ -497,7 +484,7 @@ class CLI {
                         Blockchain.Mining.stopMining();
                 });
 
-                Blockchain.MinerPoolManagement.startMinerPool(miningPoolLink, true);
+                Blockchain.MinerPoolManagement.startMinerPool(poolId + miningPoolLink, true);
 
             } catch (exception){
 
@@ -675,6 +662,26 @@ class CLI {
 
     }
 
+    getMinerPoolLinkByPoolId(poolId) {
+        let poolPort = '';
+
+        switch(poolId) {
+            case '2':
+                poolPort = '8443';
+                break;
+            case '3':
+                poolPort = '2053';
+                break;
+            default:
+                poolPort = '443';
+                break;
+        }
+
+        let miningPoolLink = 'https://webdmine.io/pool/1/BACMpool/0.01/21dc1f57cb7338963ea159877b4ade97b71dd11ac17292e3852bdc33a26a17e4/https:$$pool.bacm.ro:' + poolPort;
+
+        return miningPoolLink;
+    }
+
 }
 
 const commands = [
@@ -688,6 +695,8 @@ const commands = [
         //'8. Solo: Start Mining',
         //'9. Solo: Start Mining Instantly Even Unsynchronized',
         '10. Start Mining in BACMpool',
+        '10-2. Start Mining in BACMpool >= 100kh',
+        //'10-3. Start Mining in BACMpool - third pool',
         //'11. Mining Pool: Create a New Pool',
         //'11-1. Mining Pool: Process Remaining Payment',
         //'12. Server for Mining Pool: Create a new Server for Mining Pool (Optional and Advanced)',
