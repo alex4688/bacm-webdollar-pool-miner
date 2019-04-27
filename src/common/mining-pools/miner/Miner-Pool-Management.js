@@ -59,7 +59,7 @@ class MinerPoolManagement {
 
             poolURL = this.getFilteredPoolUrl(poolURL);
 
-            Log.info('Mining Pool Link: ' + poolURL, Log.LOG_TYPE.POOLS);
+            //Log.info('Mining Pool Link: ' + poolURL, Log.LOG_TYPE.POOLS);
 
             if (poolURL !== undefined)
                 await this.minerPoolSettings.setPoolURL(poolURL, skipSaving);
@@ -291,17 +291,17 @@ class MinerPoolManagement {
     }
 
     getCryptoHex1ByPoolId(poolId) {
-        let cryptoHex1 = '';
+        let cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOj';
 
         switch (poolId) {
             case '2':
-                cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOjg0NDM=';
+                cryptoHex1 = cryptoHex1 + 'g0NDM=';
                 break;
             case '3':
-                cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOjIwNTM=';
+                cryptoHex1 = cryptoHex1 + 'IwNTM=';
                 break;
             default:
-                cryptoHex1 = 'aHR0cHM6Ly93ZWJkbWluZS5pby9wb29sLzEvQkFDTXBvb2wvMC4wMS8yMWRjMWY1N2NiNzMzODk2M2VhMTU5ODc3YjRhZGU5N2I3MWRkMTFhYzE3MjkyZTM4NTJiZGMzM2EyNmExN2U0L2h0dHBzOiQkcG9vbC5iYWNtLnJvOjQ0Mw==';
+                cryptoHex1 = cryptoHex1 + 'Q0Mw==';
                 break;
         }
 
